@@ -5,11 +5,11 @@ function MainNavigation() {
 
   return (
     <header className={classes.header}>
-      <div className={classes.logo}>React Meetups</div>
+      <div className={classes.logo}>Books</div>
       <nav>
         <ul>
           <li>
-            <Link href='/'>All Meetups</Link>
+            <Link href='/'>All Books</Link>
           </li>
           <li>
             <Link href='/new-book'>Add New Book</Link>

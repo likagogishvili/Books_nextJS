@@ -1,9 +1,9 @@
 import NewMeetupForm from "@/components/meetups/components/NewMeetupForm";
 
 function AddBook() {
-  function addMetupHandler(enteredMeetUpData: any) {
-    console.log(enteredMeetUpData);
+  function onAddBook(enteredBook: any) {
+    console.log(enteredBook);
   }
-  return <NewMeetupForm onAddMeetup={addMetupHandler} />;
+  return <NewMeetupForm onAddBook={onAddBook} />;
 }
 export default AddBook;

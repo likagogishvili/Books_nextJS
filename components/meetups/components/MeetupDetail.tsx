@@ -3,10 +3,10 @@ import classes from "../styles/MeetupDetail.module.css";
 function MeetupDetail(props: any) {
   return (
     <section className={classes.detail}>
-      <img src={props.image} alt={props.title} />
-      <h1>{props.title}</h1>
-      <address>{props.address}</address>
-      <p>{props.description}</p>
+      <img src={props.book.image} alt={props.book.title} />
+      <h1>{props.book.title}</h1>
+      <address>{props.book.price}</address>
+      <p>{props.book.description}</p>
     </section>
   );
 }
