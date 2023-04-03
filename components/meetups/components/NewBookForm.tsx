@@ -1,9 +1,9 @@
 import { useRef } from "react";
 
 import Card from "../../ui/Card";
-import classes from "../styles/NewMeetupForm.module.css";
+import classes from "../styles/NewBookForm.module.css";
 
-function NewMeetupForm(props: any) {
+function NewBookForm(props: any) {
   const titleInputRef = useRef<HTMLInputElement>(null);
   const imageInputRef = useRef<HTMLInputElement>(null);
   const PriceInputRef = useRef<HTMLInputElement>(null);
@@ -61,4 +61,4 @@ function NewMeetupForm(props: any) {
   );
 }
 
-export default NewMeetupForm;
+export default NewBookForm;

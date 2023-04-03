@@ -1,4 +1,4 @@
-import NewMeetupForm from "@/components/meetups/components/NewMeetupForm";
+import NewBookForm from "@/components/meetups/components/NewBookForm";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { Fragment } from "react";
@@ -25,7 +25,7 @@ function AddBook() {
           Add a new book
         </meta>
       </Head>
-      <NewMeetupForm onAddBook={onAddBook} />
+      <NewBookForm onAddBook={onAddBook} />
     </Fragment>
   );
 }

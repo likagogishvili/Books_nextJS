@@ -1,11 +1,11 @@
-import MeetupItem from './MeetupItem';
-import classes from '../styles/MeetupList.module.css';
+import BookItem from './BookItem';
+import classes from '../styles/BookList.module.css';
 
-function MeetupList(props:any) {
+function BookList(props:any) {
   return (
     <ul className={classes.list}>
       {props.meetups.map((meetup:any) => (
-        <MeetupItem
+        <BookItem
           key={meetup.id}
           id={meetup.id}
           image={meetup.image}
@@ -17,4 +17,4 @@ function MeetupList(props:any) {
   );
 }
 
-export default MeetupList;
+export default BookList;

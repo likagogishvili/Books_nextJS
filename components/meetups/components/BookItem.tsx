@@ -1,7 +1,7 @@
 import Card from "../../ui/Card";
-import classes from "../styles/MeetupItem.module.css";
+import classes from "../styles/BookItem.module.css";
 import { useRouter } from "next/router";
-function MeetupItem(props: any) {
+function BookItem(props: any) {
   const router = useRouter();
 
   const showDetailsHandler = () => {
@@ -25,4 +25,4 @@ function MeetupItem(props: any) {
   );
 }
 
-export default MeetupItem;
+export default BookItem;

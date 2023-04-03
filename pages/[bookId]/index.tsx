@@ -1,4 +1,4 @@
-import MeetupDetail from "@/components/meetups/components/MeetupDetail";
+import BookDetail from "@/components/meetups/components/BookDetail";
 import { MongoClient, ObjectId } from "mongodb";
 import Head from "next/head";
 import { Fragment } from "react";
@@ -10,7 +10,7 @@ function Book(props: any) {
         <title>{props.bookData.title}</title>
         <meta name="description" content={props.bookData.description} />
       </Head>
-      <MeetupDetail book={props.bookData} />
+      <BookDetail book={props.bookData} />
     </Fragment>
   );
 }

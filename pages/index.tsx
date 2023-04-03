@@ -1,4 +1,4 @@
-import MeetupList from "@/components/meetups/components/MeetupList";
+import BookList from "@/components/meetups/components/BookList";
 import { MongoClient } from "mongodb";
 import Head from "next/head";
 import { Fragment } from "react";
@@ -6,7 +6,7 @@ function HomePage(props: any) {
   return (
     <Fragment>
 
-      <MeetupList meetups={props.selectedBook} />
+      <BookList meetups={props.selectedBook} />
     </Fragment>
   );
 }
