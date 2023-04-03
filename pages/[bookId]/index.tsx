@@ -1,8 +1,18 @@
 import MeetupDetail from "@/components/meetups/components/MeetupDetail";
 import { MongoClient, ObjectId } from "mongodb";
+import Head from "next/head";
+import { Fragment } from "react";
 
 function Book(props: any) {
-  return <MeetupDetail book={props.MeetupData} />;
+  return (
+    <Fragment>
+      <Head>
+        <title>{props.bookData.title}</title>
+        <meta name="description" content={props.bookData.description} />
+      </Head>
+      <MeetupDetail book={props.bookData} />
+    </Fragment>
+  );
 }
 export async function getStaticPaths() {
   const client = await MongoClient.connect(
@@ -34,7 +44,7 @@ export async function getStaticProps(contex: any) {
 
   return {
     props: {
-      MeetupData: {
+      bookData: {
         id: selectedbook?._id.toString(),
         title: selectedbook?.title,
         image: selectedbook?.image,

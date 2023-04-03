@@ -1,8 +1,14 @@
 import MeetupList from "@/components/meetups/components/MeetupList";
 import { MongoClient } from "mongodb";
-
+import Head from "next/head";
+import { Fragment } from "react";
 function HomePage(props: any) {
-  return <MeetupList meetups={props.meetups} />;
+  return (
+    <Fragment>
+
+      <MeetupList meetups={props.selectedBook} />
+    </Fragment>
+  );
 }
 
 export async function getStaticProps() {
@@ -17,7 +23,7 @@ export async function getStaticProps() {
   fetch("/api.books");
   return {
     props: {
-      meetups: books.map((book) => ({
+      selectedBook: books.map((book) => ({
         title: book.title,
         price: book.Price,
         image: book.image,
