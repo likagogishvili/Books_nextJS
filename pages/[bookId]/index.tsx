@@ -24,7 +24,7 @@ export async function getStaticPaths() {
   const books = await booksCollection.find({}, { _id: 1 }).toArray();
   client.close();
   return {
-    fallback: true,
+    fallback: 'blocking',
     paths: books.map((book) => ({ params: { bookId: book._id.toString() } })),
   };
 }
