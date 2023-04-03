@@ -1,37 +1,45 @@
 import MeetupDetail from "@/components/meetups/components/MeetupDetail";
+import { MongoClient, ObjectId } from "mongodb";
 
 function Book(props: any) {
   return <MeetupDetail book={props.MeetupData} />;
 }
 export async function getStaticPaths() {
+  const client = await MongoClient.connect(
+    "mongodb+srv://likagogishvili2:lika2001@books.u2r6dxc.mongodb.net/?retryWrites=true&w=majority"
+  );
+  const db = client.db();
+  const booksCollection = db.collection("books");
+  // @ts-ignore
+  const books = await booksCollection.find({}, { _id: 1 }).toArray();
+  client.close();
   return {
-    fallback: false,
-    paths: [
-      {
-        params: {
-          bookId: "m1",
-        },
-      },
-      {
-        params: {
-          bookId: "m2",
-        },
-      },
-    ],
+    fallback: true,
+    paths: books.map((book) => ({ params: { bookId: book._id.toString() } })),
   };
 }
 
 export async function getStaticProps(contex: any) {
   const bookId = contex.params.bookId;
+  let selectedbook;
+
+  const client = await MongoClient.connect(
+    "mongodb+srv://likagogishvili2:lika2001@books.u2r6dxc.mongodb.net/?retryWrites=true&w=majority"
+  );
+  const db = client.db();
+  const booksCollection = db.collection("books");
+  // @ts-ignore
+  selectedbook = await booksCollection.findOne({ _id: new ObjectId(bookId) });
+  client.close();
+
   return {
     props: {
       MeetupData: {
-        image:
-          "https://img.freepik.com/free-psd/magazine-cover-mockup-psd-with-nature-image_53876-116363.jpg?w=1380&t=st=1680167472~exp=1680168072~hmac=128a00a981a57817836e8befd21f9fc39ce0e20a80b256cda39c46b0b41b62ca",
-        title: "m1",
-        id: bookId,
-        price: 40,
-        description: "desc",
+        id: selectedbook?._id.toString(),
+        title: selectedbook?.title,
+        image: selectedbook?.image,
+        Price: selectedbook?.Price,
+        description: selectedbook?.description,
       },
     },
   };

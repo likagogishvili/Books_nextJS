@@ -1,41 +1,28 @@
 import MeetupList from "@/components/meetups/components/MeetupList";
-import { useEffect, useState } from "react";
-const dummy_meetups = [
-  {
-    id: "m1",
-    title: "A first book",
-    image:
-      "https://img.freepik.com/free-psd/magazine-cover-mockup-psd-with-nature-image_53876-116363.jpg?w=1380&t=st=1680160430~exp=1680161030~hmac=a193fd060a41b0a8912846c99312dfeb32896bbd7bfbf0a4f29baa93738fd414",
-    price: 18,
-    description: "Such a great book",
-  },
-  {
-    id: "m2",
-    title: "A second book",
-    image:
-      "https://img.freepik.com/free-psd/magazine-cover-mockup-psd-with-nature-image_53876-116363.jpg?w=1380&t=st=1680160430~exp=1680161030~hmac=a193fd060a41b0a8912846c99312dfeb32896bbd7bfbf0a4f29baa93738fd414",
-    price: 19,
-    description: "Such a great book1",
-  },
+import { MongoClient } from "mongodb";
 
-  {
-    id: "m3",
-    title: "A third book",
-    image:
-      "https://img.freepik.com/free-psd/magazine-cover-mockup-psd-with-nature-image_53876-116363.jpg?w=1380&t=st=1680160430~exp=1680161030~hmac=a193fd060a41b0a8912846c99312dfeb32896bbd7bfbf0a4f29baa93738fd414",
-    price: 20,
-    description: "Such a great book2",
-  },
-];
 function HomePage(props: any) {
   return <MeetupList meetups={props.meetups} />;
 }
 
 export async function getStaticProps() {
+  const client = await MongoClient.connect(
+    "mongodb+srv://likagogishvili2:lika2001@books.u2r6dxc.mongodb.net/?retryWrites=true&w=majority"
+  );
+  const db = client.db();
+  const booksCollection = db.collection("books");
+  const books = await booksCollection.find().toArray();
+  client.close();
   //fetch data from an api
+  fetch("/api.books");
   return {
     props: {
-      meetups: dummy_meetups,
+      meetups: books.map((book) => ({
+        title: book.title,
+        price: book.Price,
+        image: book.image,
+        id: book._id.toString(),
+      })),
     },
     revalidate: 10,
   };

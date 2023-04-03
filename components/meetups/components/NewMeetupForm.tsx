@@ -39,7 +39,7 @@ function NewMeetupForm(props: any) {
           <input type="url" required id="image" ref={imageInputRef} />
         </div>
         <div className={classes.control}>
-          <label htmlFor="Price">Price</label>
+          <label htmlFor="Price">Price $</label>
           <input type="text" required id="Price" ref={PriceInputRef} />
         </div>
         <div className={classes.control}>

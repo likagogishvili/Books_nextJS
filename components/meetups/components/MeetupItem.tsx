@@ -15,7 +15,7 @@ function MeetupItem(props: any) {
         </div>
         <div className={classes.content}>
           <h3>{props.title}</h3>
-          <p>{props.price}</p>
+          <p>{props.price} $</p>
         </div>
         <div className={classes.actions}>
           <button onClick={showDetailsHandler}>Show Details</button>
